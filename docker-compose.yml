@@ -1,0 +1,12 @@
+services:
+  # server:
+  php-fpm:
+    build:
+      context: docker
+      dockerfile: php.dockerfile
+    container_name: php-fpm
+    volumes:
+      - ./src:/usr/www/html/
+  # composer:
+  # artisan:
+  # npm:
