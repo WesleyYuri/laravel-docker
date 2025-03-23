@@ -1,12 +1,29 @@
 services:
   # server:
-  php-fpm:
+  php:
     build:
       context: docker
       dockerfile: php.dockerfile
     container_name: php-fpm
     volumes:
-      - ./src:/usr/www/html/
-  # composer:
-  # artisan:
+      - ./src:/var/www/html
+  # db
+
+  # Utility containers
+  composer:
+    build:
+      context: docker
+      dockerfile: php.dockerfile
+    container_name: composer
+    entrypoint: "composer"
+    volumes:
+      - ./src:/var/www/html
+  artisan:
+    build:
+      context: docker
+      dockerfile: php.dockerfile
+    container_name: artisan
+    entrypoint: "php /var/www/html/artisan"
+    volumes:
+      - ./src:/var/www/html
   # npm:
